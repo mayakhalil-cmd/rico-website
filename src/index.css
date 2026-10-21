@@ -1,0 +1,93 @@
+:root {
+  
+  --bg: #000000;          
+  --surface: #030a01;    
+  --surface-2: #071a02;  
+  --line: #1a4a08;        
+  --line-strong: #3bff03; 
+  --green: #3bff03;       
+  --green-rgb: 59, 255, 3;
+  --blue: #002cf8;        
+  --blue-light: #5c74ff;  
+  --pink: #f820a0;        
+  --text: #ffffff;        
+  --muted: #e4e4e4;       
+  --amber: #ffd23f;       
+
+  --font: 'Courier Prime', 'Courier New', Courier, monospace;
+  --font-title: 'Teletactile', 'VT323', 'Courier New', monospace;
+  --max: 1160px;
+  --gutter: clamp(16px, 4vw, 40px);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px; 
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(var(--green-rgb), 0.025) 3px 4px);
+}
+
+h1, h2, h3 { margin: 0; line-height: 1.15; font-family: var(--font-title); font-weight: normal; letter-spacing: 0.02em; overflow-wrap: anywhere; }
+p { margin: 0 0 1em; }
+a { color: var(--green); text-decoration: none; }
+a:hover { color: var(--pink); }
+code {
+  font-family: var(--font);
+  font-size: 0.9em;
+  color: var(--green);
+  background: var(--surface-2);
+  padding: 1px 6px;
+  border-radius: 3px;
+  overflow-wrap: anywhere;
+}
+img, video, canvas, iframe { display: block; max-width: 100%; }
+
+::selection { background: var(--green); color: var(--bg); }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+.wrap { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
+.muted { color: var(--muted); }
+.small { font-size: 0.82rem; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: 12px; top: -48px; z-index: 200;
+  background: var(--green); color: var(--bg); padding: 8px 14px; font-weight: 700;
+}
+.skip-link:focus { top: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
